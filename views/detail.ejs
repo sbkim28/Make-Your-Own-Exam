@@ -1,0 +1,14 @@
+<h2 class='w3-center'><%= item.strTitle %></h2>
+<h5 class='w3-right'><%= item.strField %></h5>
+<form>
+ <input type='hidden'name='id'value='<%= item._id %>'>
+</form>
+<br>
+<hr>
+<p class='description'><%- item.strDescription %></p>
+<section class='button_container w3-container w3-padding-16'>
+ <button id='updateBtn'class='w3-cyan w3-text-white w3-hover-text-white w3-hover-light-blue'>Edit</button>
+ <button id='deleteBtn'class='w3-red w3-hover-pink'>Delete</button>
+ <button id='takeBtn'class='w3-green w3-hover-teal'>Take an exam</button>
+</section>
+<script src='/js/detail.js'></script>

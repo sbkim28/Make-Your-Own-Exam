@@ -1,0 +1,19 @@
+<p><%= index %>.</p><p class='w3-right'>Points : <%= item.points %></p>
+<p><%- item.question %></p>
+<hr>
+<% if(item.type==0){ %>
+ <label><b>Answer:</b></label>
+ <input type='text'class='answer w3-input w3-border w3-round'>
+<% } else { %>
+ <label><b>Choices</b></label>
+ <% item.choices.forEach(function(choice,index){ %>
+  <section class='w3-row'>
+  <% if(item.isMulti){ %>
+   <input type='checkbox'class='w3-check w3-col l1 m1 s1 answer'name='answer'value='<%= index+1 %>'>
+  <% } else { %>
+   <input type='radio'class='w3-radio w3-col l1 m1 s1 answer'name='answer'value='<%= index+1 %>'>
+  <% } %>
+   <p class='w3-rest'><%= choice %>
+  </section>
+ <% }); %>
+<% } %>

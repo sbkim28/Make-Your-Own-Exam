@@ -1,0 +1,112 @@
+<script src='/js/openHiddenElement.js'></script>
+<script src='/js/detail_input_form.js'></script>
+<style>
+section.advanced > section.logical_operation {
+ display:none;
+}
+section.answers_container > section.advanced {
+ display:none;
+}
+section.choices_container > section {
+ display:none;
+}
+article.modal_article > section {
+ display : none;
+}
+input[name='points']{
+ width:50%; 
+}
+</style>
+<button type='button'class='w3-button w3-round w3-green w3-hover-teal'id='saveAllBtn'>Save All</button>
+<ul class='w3-ul w3-hoverable w3-responsive w3-border'>
+<% for(let i=0;i < index;i++){ %>
+ <li id='<%= i+1 %>'class='openModal uList w3-padding-small'>
+  <p>Question <%= i+1 %></p>
+  <div id='<%= i+1 %>_modal'class='w3-modal'>
+   <form>
+   <section class='w3-modal-content w3-card-4'>
+    <header class='w3-container w3-teal'>
+     <h2>Question <%= i+1 %></h2>
+    </header>
+    <article class='modal_article w3-container w3-padding-16'>
+     <p class='w3-text-red'><b class='modal-error'></b></p>
+     <label><b>Question:</b></label>
+     <textarea rows='4'name='question'class='question w3-input w3-border'><%= item.list[i].question %></textarea>
+     <span class='data'data-type='<%= item.list[i].type %>'data-isMulti='<%= item.list[i].isMulti %>'
+     data-caseSensitive='<%= item.list[i].caseSensitive %>'data-isKeyWord='<%= item.list[i].isKeyWord %>'data-containsAll='<%= item.list[i].containsAll %>'>
+      <% for(let j=0;j < item.list[i].answers.length;j++){ %>
+       <span class='answer_list'data-answer='<%= item.list[i].answers[j] %>'></span>
+      <% } %>
+     </span>
+     <input type='radio'class='w3-radio type'name='type'value='multiple-choice'>multiple choice
+     <br>
+     <input type='radio'class='w3-radio type'name='type'value='0'>short-answer question
+     <br>
+     
+     <section class='number_container'>
+      <label> - How many choice?</label>
+      <br><input type='radio'value='2'> 2
+      <br><input type='radio'value='3'> 3
+      <br><input type='radio'value='4'> 4
+      <br><input type='radio'value='5'> 5
+      <br><label> - Allow multiple responses?</label>
+      <input type='checkbox'class='w3-check isMultiple'name='isMultiple'value='true'>
+     </section>
+     <br>
+     <section class='choices_container'>
+      <div class='w3-row'>
+       <label> - Choices </label>
+       <p> Check the radio or checkbox to set answers
+      </div>
+      <br>
+      <section class='1'>
+       <p>(1)</p><input type='text'value='<%= item.list[i].choices[0] %>'><input type='radio'>
+      </section>
+      <section class='2'>
+       <p>(2)</p><input type='text'value='<%= item.list[i].choices[1] %>'><input type='radio'>
+      </section>
+      <section class='3'>
+       <p>(3)</p><input type='text'value='<%= item.list[i].choices[2] %>'><input type='radio'>
+      </section>
+      <section class='4'>
+       <p>(4)</p><input type='text'value='<%= item.list[i].choices[3] %>'><input type='radio'>
+      </section>
+      <section class='5'>
+       <p>(5)</p><input type='text'value='<%= item.list[i].choices[4] %>'><input type='radio'>
+      </section>
+     </section>
+     
+     <section class='answers_container'>
+      <label> - Answer</label>
+      <section class='answers'>
+       <input type='text'class='w3-input w3-border w3-round'name='answers'>
+      </section>     
+      <button type='button'class='addAnswer w3-green w3-hover-teal'>Add Answer</button>
+      <button type='button'class='removeAnswer w3-red w3-hover-pink'disabled>Remove Answer</button> 
+	  <span class='w3-button advancedOptions'>Advanced Options</span>
+      <section class='advanced'>
+       <input type='checkbox'class='w3-check caseSensitive'name='caseSensitive'>Case Sensitive
+       <input type='checkbox'class='w3-check isKeyWord'name='isKeyWord'>Keyword
+       <p>If one's answer contains one of the keys, it would be correct.</p>
+       <section class='logical_operation'>
+        <button type='button'class='addOptionCancel w3-button w3-round w3-pale-blue'style='display:none;'>Click here to Cancel adding options</button>
+        <p>Click the button and click the answers input to add or remove options.</p>
+        <button type='button'class='addNotOption w3-pale-red w3-button w3-round'>Add NOT Option</button>
+        <p>NOT Option means that if one's answer contains key with NOT Option, it would not be correct.</p>
+        <button type='button'class='removeLogicalOption w3-button w3-round w3-border'>Remove Options</button>
+        <input type='checkbox'class='w3-check containsAll'name='containsAll'>should contain all keyword?
+       </section>
+      </section>
+     </section>
+     <label> - Points </label>
+     <input type='number'class='w3-input w3-border w3-round points'min='1'name='points'step='0.5'value='<%= item.list[i].points %>'>
+    </article>
+    <footer class='modal_footer w3-container w3-padding-16 w3-teal'>
+     <button type='button'class='contentSaveBtn w3-button w3-blue w3-hover-indigo w3-round w3-right'>Save</button>
+    </footer>
+   </section>
+   </form>
+  </div>
+  </li>
+<% } %>
+</ul>

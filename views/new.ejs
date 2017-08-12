@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include header.html %>
+<script src='/js/input_form.js'></script>
+<script src='/js/locationMoveChecker.js'></script>
+<style>
+textarea {
+ resize:none;
+}
+</style>
+</head>
+<body class='w3-light-gray'>
+<% include pageHeader.html %>
+<article>
+ <section id='settings'>
+  <input type='hidden'id='id'name='id'value='<%= item._id %>'>
+  <h3 class='w3-center'>Make your own Exam</h3>
+  <h5>Settings</h5>
+  <label><b>Title:</b></label>
+  <input type='text'id='strTitle'name='strTitle'value='<%= item.strTitle %>'>
+  <p class='w3-text-red'><b class='strTitle-error'></b></p>
+  <label><b>Field:</b></label>
+  <input id='strField'list='strFieldList'name='strField'value='<%= item.strField %>'>
+  <datalist id='strFieldList'class='w3-select w3-border'>
+   <option value='Math'>Math</option>
+   <option value='English'>English</option>
+   <option value='Science'>Science</option>
+   <option value='History'>History</option>
+   <option value='Game'>Game</option>
+   <option value='Society'>Society</option>
+   <option value='Nonsense'>Nonsense</option>
+  </datalist>
+  <p class='w3-text-red'><b class='strField-error'></b></p>
+  <p class='w3-text-yellow'><b class='strField-warning'></b></p>
+  <label><b>Description:</b></label>
+  <textarea id='strDescription'class='w3-input w3-border w3-round'name='strDescription'rows='5'><%= item.strDescription %></textarea>
+  <p class='w3-text-red'><b class='strDescription-error'></b></p>
+  <label><b>Time Limit</b>(minute)</label>
+  <input type='number'id='intLimit'name='intLimit'min='1'value='<%= item.intLimit ? item.intLimit : 20 %>'>
+  <p class='w3-text-red'><b class='intLimit-error'></b></p>
+  <label><b>Number of Questions</b></label>
+  <input type='number'id='intIndex'name='intIndex'min='1'value='<%= item.intIndex ? item.intIndex : 20 %>'>
+  <p class='w3-text-red'><b class='intIndex-error'></b></p>
+  <br>
+  <section class='w3-right button_container'>
+   <button type='button'class='w3-purple w3-hover-deep-purple w3-hide'id='settingBtn'>Edit Settings</button>
+   <button type='button'class='w3-yellow w3-hover-amber'id='cancelBtn'>Cancel</button>
+   <button type='button'class='w3-green w3-hover-teal'id='continueBtn'>Continue</button>
+  </section>
+ </section>
+ <section id='questions'style='display:none;'>
+ 
+ </section>
+</article>
+</body>
+</html>

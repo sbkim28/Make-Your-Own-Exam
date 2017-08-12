@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include header.html %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='/js/index.js'></script>
+</head>
+<body class='w3-light-gray'>
+ <% include pageHeader.html %>
+ <article>
+  <section id='listView w3-responsive'>
+   <h3 class='w3-center'>Available Exam List</h3>
+   <table class='w3-table-all w3-hoverable'>
+    <tr class='w3-blue'>
+     <th>No.</th><th>Title</th><th>Field</th><th>Date</th>
+    </tr>
+    <% list.forEach(function(item,index){ %> 
+     <tr class='tList'id='<%= item._id %>'>
+      <td><%= list.length - index %></td>
+      <td class='tdTitle'><%= item.strTitle %></td>
+      <td class='tdField'><%= item.strField %></td>
+      <td class='tdDate'><%= item.dateCreated %></td>
+     </tr>
+    <% }) %>
+   </table>
+  </section>
+  <section class='button_container w3-rows'>
+   <section id='radios'class='w3-col l2 m3 s4'>
+    <input type='radio'class='w3-radio'value='tdTitle'checked>Title
+    <input type='radio'class='w3-radio'value='tdField'>Field
+   </section>
+   <input type='text'class='w3-input w3-border w3-round w3-col l2 m3 s4'placeholder='Search Test'id='query'>
+   <button type='button' class=' w3-cyan w3-hover-light-blue w3-text-white w3-hover-text-white w3-right'id='newBtn'>Write New</button>
+  </section>
+  <section class='w3-responsive'id='detailView'>
+  </section>
+ </article>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include header.html %>
+<script src='/js/locationMoveChecker.js'></script>
+<script src='/js/exam.js'></script>
+</head>
+<body class='w3-light-gray'>
+<aside class='w3-sidebar w3-white w3-card-4 w3-animate-left w3-bar-block w3-border-right'style='display:none;'>
+ <button type='button'class='w3-white w3-button w3-bar-item w3-large closeSidebar'id='closeSidebar'>Close &times;</button>
+ <section class='href_container w3-bar-item'>
+  <% item.list.forEach(function(q,index){ %> 
+   <button type='button'class='w3-white w3-button w3-bar-item questionLocate'>Question <%= index+1 %></button>
+  <% }) %>
+ </section>
+</aside>
+<header class='w3-green w3-container'>
+ <button type='button'class='w3-button w3-green w3-xlarge openSidebar'>☰</button>
+ <h1 class='w3-center'><b><%= item.strTitle %></b></h1>
+</header>
+<article>
+ <section class='mainBody w3-margin w3-container w3-padding-16 w3-white w3-border w3-round'>
+  <h2>Exam</h2><span class='w3-right'>Time Left : <b class='time'></b></span><br><hr>
+  <section class='test'>
+   <p>Description : </p>
+   <p><%- item.strDescription %></p>
+   <hr>
+   <p>You're going to take an exam. This exam have <%= item.intIndex %> Questions and time limit is <%= item.intLimit %>.</p>
+   <p>You can go next or previous question by clicking the two buttons below.</p>
+   <p>Also, there is a side bar. It displays when you click the '☰' icon. It will help you change pages fast.</p>
+   <p>If you finish the exam, click the submit button below.</p>
+   <p>If you are ready, click the start button below. <b>Good Luck.</b></p>
+   <p class='w3-center'><button type='button'class='w3-button w3-green w3-round'id='start'>Start</button></p>
+  </section>
+  <button type='button'id='submitBtn'class='w3-right w3-button w3-round w3-blue w3-hover-indigo'disabled>Submit</button>
+ </section>
+</article>
+<footer class='w3-container'>
+ <button type='button'id='previousBtn'class='w3-button w3-round w3-amber w3-hover-orange w3-left'disabled>Previous Question</button>
+ <button type='button'id='nextBtn'class='w3-button w3-round w3-amber w3-hover-orange w3-right'disabled>Next Question</button>
+</footer>
+ <span class='data'data-intLimit='<%= item.intLimit %>'data-_id='<%= item._id %>'data-intIndex='<%= item.intIndex %>'></span>
+</body>
+</html>
